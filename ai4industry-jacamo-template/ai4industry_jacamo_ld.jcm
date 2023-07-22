@@ -1,0 +1,16 @@
+mas itm_factory_mas {
+
+    // Agent for crawling the KG
+    agent ld_spider {
+        goals:      start                                               // initial goal. Comment to make agent inactive
+        join:       itm_factory_workspace                               // working environment for the agent
+        focus:      itm_factory_workspace.ld_spider
+        focus:      itm_factory_workspace.onto_mgr
+    }
+
+    workspace itm_factory_workspace  {
+        artifact ld_spider : org.hypermedea.LinkedDataArtifact()          // for browsing RDF data
+        artifact onto_mgr : org.hypermedea.OntologyArtifact()             // for managing OWL ontology signatures
+    }
+
+}

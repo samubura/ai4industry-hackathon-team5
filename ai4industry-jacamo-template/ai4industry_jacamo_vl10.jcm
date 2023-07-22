@@ -1,0 +1,14 @@
+mas itm_factory_mas {
+
+    // Agent for controling the Conveying Workshop / Storage Rack
+    agent vl10_agent {
+        goals:      start                                               // initial goal defining the entry point in vl10_agent.asl
+        join:       itm_factory_workspace                               // working environment for the agent
+        focus:      itm_factory_workspace.vl10
+    }
+
+    workspace itm_factory_workspace  {
+        artifact vl10 : org.hypermedea.ThingArtifact("https://ci.mines-stetienne.fr/kg/itmfactory/vl10")
+    }
+
+}

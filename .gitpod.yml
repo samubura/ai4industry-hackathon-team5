@@ -1,0 +1,9 @@
+tasks:
+  - before: yes | sdk install java 17.0.7-tem && cd ai4industry-jacamo-template
+
+vscode:
+  extensions:
+    - https://open-vsx.org/api/tabajara-krausburg/jacamo4code/1.2.1/file/tabajara-krausburg.jacamo4code-1.2.1.vsix
+    - https://open-vsx.org/api/vemonet/stardog-rdf-grammars/0.1.2/file/vemonet.stardog-rdf-grammars-0.1.2.vsix
+    - https://open-vsx.org/api/formulahendry/vscode-node-red/0.2.0/file/formulahendry.vscode-node-red-0.2.0.vsix
+    - redhat.vscode-xml
