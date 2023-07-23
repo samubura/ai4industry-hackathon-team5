@@ -255,7 +255,7 @@ grasping_property(Thing,PName) :-
     .println(Thing," has the following action affordances ",AL);
     .findall(PN,has_property_affordance(Thing,PA) & name(PA, PN),PL);
     .println(Thing," has the following property affordances ",PL);
-    .findall(EN,has_event_affordance(Thing,EA) & name(EA, EN),EL)
+    .findall(EN,has_event_affordance(Thing,EA) & name(EA, EN),EL);
     .println(Thing," has the following event affordances ",EL);
     .println("----------------------------------------------------");
   .
