@@ -18,7 +18,7 @@
 thing(cupProvider,Thing) :-
     thing(Thing)
     // TODO include signature from the Product Ontology
-    & rdf(Thing,"http://purl.org/dc/terms/title","cup-provider")
+    & rdf(Thing,"https://www.w3.org/2019/wot/td#title","cup-provider")
     & order_action(Thing,_)
     & order_packages_action(Thing,_)
     & has_event_affordance(Thing,DeliveredPackages)
@@ -51,7 +51,7 @@ thing(cupProvider,Thing) :-
      // set credentials to access the Thing
     ?credentials(SimuName,SimuPasswd);
     setAuthCredentials(SimuName, SimuPasswd)[artifact_id(ArtId)] ;
-    !getDescription(Name);
+    !getDescription(Thing);
 .
 
 +!run(Name) :

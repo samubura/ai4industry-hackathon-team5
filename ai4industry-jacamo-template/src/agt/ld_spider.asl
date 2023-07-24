@@ -44,11 +44,11 @@ entryPoint("https://ci.mines-stetienne.fr/kg/") .
     */
     get(URI) ;
     /*
-    .wait() is a Jason internal action, as you already saw in vl10_agent. It is used in a slightly different way, here: instead of waiting a certain period of time, the agent will wait for a particular event (that may never occur). Here, the event the agent waits for is triggered by Hypermedea's LD crawler after a GET request, to inform the agent that the server responded. This action therefore enforces synchronous interaction with the server.
+    .wait() is a Jason internal action, as you already saw in vl10_agent. It is used in a slightly different way, here: instead of waiting a certain period of time, the agent will wait for a particular event (that may never occur). The event is triggered by Hypermedea's LD crawler after a GET request, to inform the agent that the server responded. This action therefore enforces synchronous interaction with the server.
     See the documentation of .wait() for more details on the syntax of its arguments:
     https://jason.sourceforge.net/api/jason/stdlib/wait.html
     */
-    .wait({ +visited(URI) }) ;
+    .wait({ +visited(_) }) ;
   .
 
 /*
@@ -69,7 +69,7 @@ In Jason, events are not only generated when the agent's goals change. If an age
     https://jason.sourceforge.net/api/jason/stdlib/count.html
     */
     .count(rdf(_, _, _), Count) ;
-    .print("found ", Count, " triples.");
+    .print("found ", Count, " triples.") ;
   .
 
 /*
@@ -87,13 +87,15 @@ https://hypermedea.github.io/javadoc/latest/org/hypermedea/LinkedDataArtifact.ht
 https://github.com/Hypermedea/hypermedea/blob/master/examples/fayol/src/agt/controller.asl
 Adapt this program to the IT'm Factory KG. How many triples does this KG include?
 
-4. In the KG, the VL10 workshop is declared to be of type td:Thing. It must therefore expose affordances to read/write its properties, invoke actions and/or subscribe to events. Instead of counting RDF triples at the end of the crawl, modify ld_spider's program to list all Things it found, along with the affordances they expose.
+4. In the KG, the VL10 workshop is declared to be of type td:Thing. In fact, the KG includes the TD documents you saw in the previous exercises, this time in RDF. The Thing therefore exposes affordances to read/write its properties, invoke actions and/or subscribe to events. Instead of counting RDF triples at the end of the crawl, modify ld_spider's program to list all Things it found, along with the affordances they expose.
 Once you've done that, look at the file inc/common.asl (in ai4industry_jacamo_template/src/agt/). You will find a goal called !getDescription at the end of the file. What does the associated plan do?
-In this file, you will also see Prolog rules. Jason agents can indeed include rules as beliefs (resolved by the Jason interpreter at runtime). If your agent includes inc/common.asl (see statements e.g. at the bottom of this file), all rules defined in the file will be included as beliefs in the agent's state.
+
+In the file inc/common.asl, you will also see Prolog rules. Jason agents can indeed include rules as beliefs (resolved by the Jason interpreter at runtime). If your agent includes inc/common.asl (see statements e.g. at the bottom of this file), all rules defined in the file will be included as beliefs in the agent's state.
 
 Now that your agent has dynamically discovered WoT affordances, it can select the ones relevant to reach its goals and act on the factory workshops in an adaptive fashion.
 */
 
+{ include("inc/owl-signature.asl") }
 { include("inc/common.asl") }
 
 { include("$jacamoJar/templates/common-cartago.asl") }

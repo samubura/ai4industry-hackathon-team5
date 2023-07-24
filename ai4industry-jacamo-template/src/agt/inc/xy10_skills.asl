@@ -115,7 +115,7 @@
     & thing(Name,Thing)
     & stack_light_status_property(Thing,PName)
     <-
-    observeProperty(PName,PName,Timer)[artifact_name(Name)];
+    !observeProperty(Name,PName,Timer);
     .println("acted on ",Name," to request ",Thing," to observe ",PName);
   .
 
@@ -125,7 +125,7 @@
     & thing(Name,Thing)
     & conveyor_speed_property(Thing,PName)
     <-
-    observeProperty(PName,PName,Timer)[artifact_name(Name)];
+    !observeProperty(Name,PName,Timer);
     .println("acted on ",Name," to request ",Thing," to observe ",PName);
   .
 
@@ -135,7 +135,7 @@
     & thing(Name,Thing)
     & package_buffer_property(Thing,PName)
     <-
-    observeProperty(PName,PName,Timer)[artifact_name(Name)];
+    !observeProperty(Name,PName,Timer);
     .println("acted on ",Name," to request ",Thing," to observe ",PName);
   .
 
@@ -145,7 +145,7 @@
     & thing(Name,Thing)
     & optical_sensor_status_property(Thing,PName)
     <-
-    observeProperty(PName,PName,Timer)[artifact_name(Name)];
+    !observeProperty(Name,PName,Timer);
     .println("acted on ",Name," to request ",Thing," to observe ",PName);
   .
 
@@ -155,7 +155,7 @@
     & thing(Name,Thing)
     & optical_sensor_container_1(Thing,PName)
     <-
-    observeProperty(PName,PName,Timer)[artifact_name(Name)];
+    !observeProperty(Name,PName,Timer);
     .println("acted on ",Name," to request ",Thing," to observe ",PName);
   .
 
@@ -165,7 +165,7 @@
     & thing(Name,Thing)
     & optical_sensor_container_2(Thing,PName)
     <-
-    observeProperty(PName,PName,Timer)[artifact_name(Name)];
+    !observeProperty(Name,PName,Timer);
     .println("acted on ",Name," to request ",Thing," to observe ",PName);
   .
 
@@ -175,49 +175,49 @@
     & thing(Name,Thing)
     & conveyor_head_status_property(Thing,PName)
     <-
-    observeProperty(PName,PName,Timer)[artifact_name(Name)];
+    !observeProperty(Name,PName,Timer);
     .println("acted on ",Name," to request ",Thing," to observe ",PName);
   .
 
 /*******************/
 
-+stackLightStatus(X)[artifact_name(_,Name)] :
++propertyValue("stackLightStatus", X)[artifact_name(_,Name)] :
     thing(Name,Thing)
     <-
     .println("stack light status is now ", X);
   .
 
-+conveyorSpeed(X)[artifact_name(_,Name)] :
++propertyValue("conveyorSpeed", X)[artifact_name(_,Name)] :
     thing(Name,Thing)
     <-
     .println("conveyor speed is now ", X);
   .
 
-+packageBuffer(X)[artifact_name(_,Name)] :
++propertyValue("packageBuffer", X)[artifact_name(_,Name)] :
     thing(Name,Thing)
     <-
     .println("package buffer is now ", X);
   .
 
-+opticalSensorPackage(X)[artifact_name(_,Name)] :
++propertyValue("opticalSensorPackage", X)[artifact_name(_,Name)] :
     thing(Name,Thing)
     <-
     .println("optical sensor package is now ", X);
   .
 
-+opticalSensorContainer1(X)[artifact_name(_,Name)] :
++propertyValue("opticalSensorContainer1", X)[artifact_name(_,Name)] :
     thing(Name,Thing)
     <-
     .println("optical sensor container1 is now ", X);
   .
 
-+opticalSensorContainer2(X)[artifact_name(_,Name)] :
++propertyValue("opticalSensorContainer2", X)[artifact_name(_,Name)] :
     thing(Name,Thing)
     <-
     .println(" optical sensor container2 is now ", X);
   .
 
-+conveyorHeadStatus(X)[artifact_name(_,Name)] :
++propertyValue("conveyorHeadStatus", X)[artifact_name(_,Name)] :
     thing(Name,Thing)
     <-
     .println(" conveyor head status is now ", X);

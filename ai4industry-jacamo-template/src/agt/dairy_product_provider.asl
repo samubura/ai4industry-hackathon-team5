@@ -16,7 +16,7 @@
 thing(dairyProductProvider,Thing) :-
     thing(Thing)
     // TODO include signature from the Product Ontology
-    & rdf(Thing,"http://purl.org/dc/terms/title","dairy-product-provider")
+    & rdf(Thing,"https://www.w3.org/2019/wot/td#title","dairy-product-provider")
     & has_action_affordance(Thing, OrderDairy)
     & name(OrderDairy,"order")
     & has_event_affordance(Thing,Delivered)
@@ -46,7 +46,7 @@ thing(dairyProductProvider,Thing) :-
     focus(ArtId);
     ?credentials(SimuName,SimuPasswd);
     setAuthCredentials(SimuName, SimuPasswd)[artifact_id(ArtId)] ;
-    !getDescription(Name);
+    !getDescription(Thing);
 .
 
 +!run(Name) :

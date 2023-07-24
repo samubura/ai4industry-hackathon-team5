@@ -7,6 +7,7 @@ bin/
 .project
 .metadata
 .idea/
+log/
 
 # Ignore Gradle GUI config
 gradle-app.setting

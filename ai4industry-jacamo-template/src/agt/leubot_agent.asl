@@ -55,7 +55,7 @@ location_packaging([3.2,0,1]). // relative position of packaging workshop
     ?has_origin_coordinates(Name,CX,CY,CZ);
     .println(Thing, " has origin coordinates ",CX," ",CY," ",CZ);
 
-    !getDescription(Name);
+    !getDescription(Thing);
 
     // Set API key is a call of the operation setAPIKey on the ThingArtifact
     setAPIKey(Token)[artifact_name(Name)];

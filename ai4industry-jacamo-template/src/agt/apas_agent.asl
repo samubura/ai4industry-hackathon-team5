@@ -57,7 +57,7 @@ thing(boschApas,Thing) :-
     ?has_origin_coordinates(Name,CX,CY,CZ);
     .println(Thing, " has origin coordinates ",CX," ",CY," ",CZ);
 
-    !getDescription(Name);
+    !getDescription(Thing);
 
     !testStatus(Name);
 
@@ -109,7 +109,7 @@ thing(boschApas,Thing) :-
     & thing(Name,Thing)
     & in_movement_property(Thing,PName)
     <-
-    observeProperty(PName,PName,Timer)[artifact_name(Name)];
+    !observeProperty(Name,PName,Timer);
     .println("observing ",PName," on ",Thing);
   .
 
@@ -118,7 +118,7 @@ thing(boschApas,Thing) :-
     & thing(Name,Thing)
     & grasping_property(Thing,PName)
     <-
-    observeProperty(PName,PName,Timer)[artifact_name(Name)];
+    !observeProperty(Name,PName,Timer);
     .println("observing ",PName," on ",Thing);
   .
 
@@ -140,13 +140,13 @@ thing(boschApas,Thing) :-
     .println(Name,"---> ",Thing," current grasping ",Value," for ",FullName," ",PName);
   .
 
-+inMovement(X) :
++propertyValue("inMovement", X) :
     true
     <-
     .println("inMovement is now ", X);
   .
 
-+grasping(X) :
++propertyValue("grasping", X) :
     true
     <-
     .println("grasping is now ", X);

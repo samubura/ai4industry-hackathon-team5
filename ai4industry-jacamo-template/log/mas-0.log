@@ -1,4 +1,4 @@
-[Include] as2j: error parsing "file:src/agt/inc/common.asl": Encountered " <ATOM> ".println "" at line 259, column 5.
+[Include] as2j: error parsing "file:src/agt/inc/common.asl": Encountered " <ATOM> ".println "" at line 266, column 5.
 Was expecting one of:
     "div" ...
     "mod" ...
@@ -41,7 +41,7 @@ Was expecting one of:
     "&" ...
     "|" ...
     (it is being included in the agent 'cup_provider')
-[Include] as2j: error parsing "file:src/agt/inc/common.asl": Encountered " <ATOM> ".println "" at line 259, column 5.
+[Include] as2j: error parsing "file:src/agt/inc/common.asl": Encountered " <ATOM> ".println "" at line 266, column 5.
 Was expecting one of:
     "div" ...
     "mod" ...
@@ -84,7 +84,7 @@ Was expecting one of:
     "&" ...
     "|" ...
     (it is being included in the agent 'dairy_product_provider')
-[Include] as2j: error parsing "file:src/agt/inc/common.asl": Encountered " <ATOM> ".println "" at line 259, column 5.
+[Include] as2j: error parsing "file:src/agt/inc/common.asl": Encountered " <ATOM> ".println "" at line 266, column 5.
 Was expecting one of:
     "div" ...
     "mod" ...
@@ -127,7 +127,7 @@ Was expecting one of:
     "&" ...
     "|" ...
     (it is being included in the agent 'leubot_agent')
-[Include] as2j: error parsing "file:src/agt/inc/common.asl": Encountered " <ATOM> ".println "" at line 259, column 5.
+[Include] as2j: error parsing "file:src/agt/inc/common.asl": Encountered " <ATOM> ".println "" at line 266, column 5.
 Was expecting one of:
     "div" ...
     "mod" ...
@@ -170,7 +170,7 @@ Was expecting one of:
     "&" ...
     "|" ...
     (it is being included in the agent 'vl10_agent')
-[Include] as2j: error parsing "file:src/agt/inc/common.asl": Encountered " <ATOM> ".println "" at line 259, column 5.
+[Include] as2j: error parsing "file:src/agt/inc/common.asl": Encountered " <ATOM> ".println "" at line 266, column 5.
 Was expecting one of:
     "div" ...
     "mod" ...
@@ -213,7 +213,7 @@ Was expecting one of:
     "&" ...
     "|" ...
     (it is being included in the agent 'dx10_agent')
-[Include] as2j: error parsing "file:src/agt/inc/common.asl": Encountered " <ATOM> ".println "" at line 259, column 5.
+[Include] as2j: error parsing "file:src/agt/inc/common.asl": Encountered " <ATOM> ".println "" at line 266, column 5.
 Was expecting one of:
     "div" ...
     "mod" ...
@@ -256,7 +256,7 @@ Was expecting one of:
     "&" ...
     "|" ...
     (it is being included in the agent 'apas_agent')
-[Include] as2j: error parsing "file:src/agt/inc/common.asl": Encountered " <ATOM> ".println "" at line 259, column 5.
+[Include] as2j: error parsing "file:src/agt/inc/common.asl": Encountered " <ATOM> ".println "" at line 266, column 5.
 Was expecting one of:
     "div" ...
     "mod" ...
@@ -299,7 +299,7 @@ Was expecting one of:
     "&" ...
     "|" ...
     (it is being included in the agent 'xy10_agent')
-[Include] as2j: error parsing "file:src/agt/inc/common.asl": Encountered " <ATOM> ".println "" at line 259, column 5.
+[Include] as2j: error parsing "file:src/agt/inc/common.asl": Encountered " <ATOM> ".println "" at line 266, column 5.
 Was expecting one of:
     "div" ...
     "mod" ...
@@ -351,69 +351,63 @@ Was expecting one of:
 [Cartago] artifact test_dairyProductProvider: org.hypermedea.ThingArtifact("https://ci.mines-stetienne.fr/kg/dairy-product-provider") at itm_factory_workspace created.
 [Cartago] artifact onto_mgr: org.hypermedea.OntologyArtifact() at itm_factory_workspace created.
 [Cartago] artifact test_vl10: org.hypermedea.ThingArtifact("https://ci.mines-stetienne.fr/kg/itmfactory/vl10") at itm_factory_workspace created.
-[cup_provider] join workspace /main/itm_factory_workspace: done
-[dx10_agent] join workspace /main/itm_factory_workspace: done
-[vl10_agent] join workspace /main/itm_factory_workspace: done
-[leubot_agent] join workspace /main/itm_factory_workspace: done
-[controller] join workspace /main/itm_factory_workspace: done
-[vl10_agent] focusing on artifact ld_spider (at workspace /main/itm_factory_workspace) using namespace default
-[controller] focusing on artifact test_vl10 (at workspace /main/itm_factory_workspace) using namespace default
-[leubot_agent] focusing on artifact ld_spider (at workspace /main/itm_factory_workspace) using namespace default
-[cup_provider] focusing on artifact ld_spider (at workspace /main/itm_factory_workspace) using namespace default
-[dx10_agent] focusing on artifact ld_spider (at workspace /main/itm_factory_workspace) using namespace default
 [ld_spider] join workspace /main/itm_factory_workspace: done
-[apas_agent] join workspace /main/itm_factory_workspace: done
-[xy10_agent] join workspace /main/itm_factory_workspace: done
 [dairy_product_provider] join workspace /main/itm_factory_workspace: done
-[ld_spider] focusing on artifact ld_spider (at workspace /main/itm_factory_workspace) using namespace default
-[apas_agent] focusing on artifact ld_spider (at workspace /main/itm_factory_workspace) using namespace default
+[leubot_agent] join workspace /main/itm_factory_workspace: done
+[vl10_agent] join workspace /main/itm_factory_workspace: done
+[leubot_agent] focusing on artifact ld_spider (at workspace /main/itm_factory_workspace) using namespace default
+[vl10_agent] focusing on artifact ld_spider (at workspace /main/itm_factory_workspace) using namespace default
+[controller] join workspace /main/itm_factory_workspace: done
+[controller] focusing on artifact test_vl10 (at workspace /main/itm_factory_workspace) using namespace default
+[vl10_agent] focus on ld_spider: done
 [leubot_agent] focus on ld_spider: done
-[xy10_agent] focusing on artifact ld_spider (at workspace /main/itm_factory_workspace) using namespace default
-[dx10_agent] focus on ld_spider: done
-[dairy_product_provider] focusing on artifact ld_spider (at workspace /main/itm_factory_workspace) using namespace default
+[vl10_agent] focusing on artifact vl10 (at workspace /main/itm_factory_workspace) using namespace default
 [controller] focus on test_vl10: done
-[apas_agent] focus on ld_spider: done
 [controller] focusing on artifact test_dx10 (at workspace /main/itm_factory_workspace) using namespace default
-[dairy_product_provider] focus on ld_spider: done
-[apas_agent] Belief base is under initialization
-[dx10_agent] Belief base is under initialization
-[dairy_product_provider] Belief base is under initialization
-[leubot_agent] Belief base is under initialization
 [controller] focus on test_dx10: done
 [controller] focusing on artifact test_boschApas (at workspace /main/itm_factory_workspace) using namespace default
 [controller] focus on test_boschApas: done
+[leubot_agent] Belief base is under initialization
 [controller] focusing on artifact test_xy10 (at workspace /main/itm_factory_workspace) using namespace default
-[cup_provider] focus on ld_spider: done
-[vl10_agent] focus on ld_spider: done
-[cup_provider] Belief base is under initialization
-[vl10_agent] focusing on artifact vl10 (at workspace /main/itm_factory_workspace) using namespace default
-[ld_spider] focus on ld_spider: done
-[xy10_agent] focus on ld_spider: done
-[ld_spider] Crawling starting from https://ci.mines-stetienne.fr/kg/
-[xy10_agent] Belief base is under initialization
-[vl10_agent] waiting a bit to join/focus -- art_env(itm_factory_workspace,vl10,default) -- try #5
 [controller] focus on test_xy10: done
 [CAgentArch] the anotation artifact_name only works if either wid or wsp is also informed. test_vl10 being ignored!
-[controller] conveyorSpeed has changed to: NaN
-[controller] conveyorSpeed has changed to: NaN
-[controller] conveyorSpeed has changed to: NaN
 [CAgentArch] the anotation artifact_name only works if either wid or wsp is also informed. test_dx10 being ignored!
 [CAgentArch] the anotation artifact_name only works if either wid or wsp is also informed. test_xy10 being ignored!
 [CAgentArch] the anotation artifact_name only works if either wid or wsp is also informed. test_boschApas being ignored!
 [CAgentArch] the anotation artifact_name only works if either wid or wsp is also informed. test_cupProvider being ignored!
 [CAgentArch] the anotation artifact_name only works if either wid or wsp is also informed. test_dairyProductProvider being ignored!
 [CAgentArch] the anotation artifact_name only works if either wid or wsp is also informed. test_vl10 being ignored!
-[vl10_agent] focusing on artifact vl10 (at workspace /main/itm_factory_workspace) using namespace default
-[vl10_agent] waiting a bit to join/focus -- art_env(itm_factory_workspace,vl10,default) -- try #4
-[controller] conveyorSpeed has changed to: 0
+[xy10_agent] join workspace /main/itm_factory_workspace: done
+[dx10_agent] join workspace /main/itm_factory_workspace: done
+[xy10_agent] focusing on artifact ld_spider (at workspace /main/itm_factory_workspace) using namespace default
+[apas_agent] join workspace /main/itm_factory_workspace: done
+[dx10_agent] focusing on artifact ld_spider (at workspace /main/itm_factory_workspace) using namespace default
+[ld_spider] focusing on artifact ld_spider (at workspace /main/itm_factory_workspace) using namespace default
+[dairy_product_provider] focusing on artifact ld_spider (at workspace /main/itm_factory_workspace) using namespace default
+[apas_agent] focusing on artifact ld_spider (at workspace /main/itm_factory_workspace) using namespace default
+[dairy_product_provider] focus on ld_spider: done
+[apas_agent] focus on ld_spider: done
+[dx10_agent] focus on ld_spider: done
+[dx10_agent] Belief base is under initialization
+[dairy_product_provider] Belief base is under initialization
+[apas_agent] Belief base is under initialization
+[cup_provider] join workspace /main/itm_factory_workspace: done
+[cup_provider] focusing on artifact ld_spider (at workspace /main/itm_factory_workspace) using namespace default
+[cup_provider] focus on ld_spider: done
+[cup_provider] Belief base is under initialization
+[vl10_agent] waiting a bit to join/focus -- art_env(itm_factory_workspace,vl10,default) -- try #5
+[xy10_agent] focus on ld_spider: done
+[xy10_agent] Belief base is under initialization
+[ld_spider] focus on ld_spider: done
+[ld_spider] Crawling starting from https://ci.mines-stetienne.fr/kg/
 [controller] read property conveyorSpeed: 0
 [CAgentArch] the anotation artifact_name only works if either wid or wsp is also informed. test_vl10 being ignored!
-[CAgentArch] Action failed: observeProperty("conveyorSpeed","conveyorSpeed",1000)[artifact_name("test_vl10")], in namespace default, operation ( observeProperty conveyorSpeed conveyorSpeed 1000 )
-[controller] No failure event was generated for +!run[code(observeProperty("conveyorSpeed","conveyorSpeed",1000)[artifact_name("test_vl10")]),code_line(36),code_src("file:src/agt/controller.asl"),env_failure_reason(env_failure(action_failed(observeProperty,op(default,"( observeProperty conveyorSpeed conveyorSpeed 1000 )")))),error(action_failed),error_msg("Action failed: observeProperty("conveyorSpeed","conveyorSpeed",1000)[artifact_name("test_vl10")], in namespace default, operation ( observeProperty conveyorSpeed conveyorSpeed 1000 )"),source(self)]
-intention 23: 
-    +!run[source(self)] <- ... observeProperty("conveyorSpeed","conveyorSpeed",1000)[artifact_name("test_vl10")]; !writeProperty("conveyorSpeed",test_vl10,1); .print("conveyor speed set to 1"); !invokeAction("pressEmergencyStop",test_vl10); .print("emergency stop pressed") / {}
-    +!start[source(self)] <- ... !run / {SimuPasswd="simu1", SimuName="simu1"}
-
+[vl10_agent] focusing on artifact vl10 (at workspace /main/itm_factory_workspace) using namespace default
+[vl10_agent] waiting a bit to join/focus -- art_env(itm_factory_workspace,vl10,default) -- try #4
+[controller] updated property conveyorSpeed with value 1 on test_vl10
+[controller] conveyor speed set to 1
+[controller] executing pressEmergencyStop on test_vl10
+[CAgentArch] the anotation artifact_name only works if either wid or wsp is also informed. test_vl10 being ignored!
 [vl10_agent] focusing on artifact vl10 (at workspace /main/itm_factory_workspace) using namespace default
 [vl10_agent] waiting a bit to join/focus -- art_env(itm_factory_workspace,vl10,default) -- try #3
 [vl10_agent] focusing on artifact vl10 (at workspace /main/itm_factory_workspace) using namespace default
@@ -421,8 +415,14 @@ intention 23:
 [vl10_agent] focusing on artifact vl10 (at workspace /main/itm_factory_workspace) using namespace default
 [vl10_agent] waiting a bit to join/focus -- art_env(itm_factory_workspace,vl10,default) -- try #1
 [vl10_agent] Error handling art_env(itm_factory_workspace,vl10,default) (to join a workspace or focus on an artifact)
-[vl10_agent] No failure event was generated for +!readConveyorSpeed[code(readProperty("conveyorSpeed",_341)),code_line(62),code_src("file:src/agt/vl10_agent.asl"),error(action_failed),error_msg("Status: CONSUMER_ERROR"),source(self)]
-intention 88: 
+[controller] No failure event was generated for +!invokeAction("pressEmergencyStop",test_vl10)[code(invokeAction("pressEmergencyStop")[artifact_name(test_vl10)]),code_line(68),code_src("file:src/agt/controller.asl"),error(action_failed),error_msg(""),source(self)]
+intention 12: 
+    +!invokeAction("pressEmergencyStop",test_vl10)[source(self)] <- ... invokeAction(Name)[artifact_name(ArtName)]; .print("executed ",Name," on ",ArtName) / {ArtName=test_vl10, Name="pressEmergencyStop"}
+    +!run[source(self)] <- ... !invokeAction("pressEmergencyStop",test_vl10); .print("emergency stop pressed") / {}
+    +!start[source(self)] <- ... !run / {SimuPasswd="simu1", SimuName="simu1"}
+
+[vl10_agent] No failure event was generated for +!readConveyorSpeed[code(readProperty("conveyorSpeed",_3876)),code_line(62),code_src("file:src/agt/vl10_agent.asl"),error(action_failed),error_msg("Thing responded with status: CONSUMER_ERROR"),source(self)]
+intention 83: 
     +!readConveyorSpeed[source(self)] <- ... readProperty("conveyorSpeed",Val); .print("Conveyor speed: ",Val) / {}
     +!start[source(self)] <- ... !readConveyorSpeed / {Username="simuN", Password="simuN"}
 

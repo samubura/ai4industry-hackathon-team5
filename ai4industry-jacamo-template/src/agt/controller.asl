@@ -33,7 +33,6 @@ by sending of messages (e.g. . send(controller,achieve,invokeAction(....)))
     true
     <-
     ?workshopRunning ;
-    observeProperty("conveyorSpeed","conveyorSpeed",1000)[artifact_name("test_vl10")];
     !writeProperty("conveyorSpeed", test_vl10, 1);
     .print("conveyor speed set to 1") ;
     !invokeAction("pressEmergencyStop",test_vl10);

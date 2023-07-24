@@ -1,11 +1,32 @@
-/*
+/* 
 
 @author Olivier Boissier (Mines Saint-Etienne)
 */
 
-location_conveyor([2.2,0,1]). // relative position of conveyor
-location_packaging([3.2,0,1]). // relative position of packaging workshop
+// location_conveyor([-0.5,0.5,0.2]). // relative position of conveyor
+ location_conveyor([2.2,0,1]). // absolute position of conveyor
+// location_packaging([0.5,0.5,0.2]). // relative position of packaging workshop
+ location_packaging([3.2,0,1]). // absolute position of packaging workshop
 
+/*
+location_conveyor("dx10",ValueX, ValueY, ValueZ) :-
+      thing(Name,Thing)
+      & entryPoint(Base)
+      & builder(Thing, Base, "ontology#hasOriginCoordinates", Temp)
+      & builder(Temp, Base, "ontology#coordX",ValueX)
+      & builder(Temp, Base, "ontology#coordY",ValueY)
+      & builder(Temp, Base, "ontology#coordZ",ValueZ)
+  .
+
+location_packaging("xy10",ValueX, ValueY, ValueZ) :-
+      thing(Name,Thing)
+      & entryPoint(Base)
+      & builder(Thing, Base, "ontology#hasOriginCoordinates", Temp)
+      & builder(Temp, Base, "ontology#coordX",ValueX)
+      & builder(Temp, Base, "ontology#coordY",ValueY)
+      & builder(Temp, Base, "ontology#coordZ",ValueZ)
+  .
+*/
 has_origin_coordinates(Name,ValueX, ValueY, ValueZ) :-
       thing(Name,Thing)
       & entryPoint(Base)

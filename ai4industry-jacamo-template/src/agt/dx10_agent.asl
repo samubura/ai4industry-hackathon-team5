@@ -69,7 +69,7 @@ thing(fillingWorkshop,Thing) :-
     .println("ThingArtifact created");
     //  ?locationOfInputMaterial(Name,CIX,CIY,CIZ);
     //  ?locationOfOutputProduct(Name,COX,COY,COZ);
-    !getDescription(Name);
+    !getDescription(Thing);
     !testStatus(Name);
     
     // Not necessary to get all of them regularly. 

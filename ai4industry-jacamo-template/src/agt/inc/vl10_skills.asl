@@ -124,7 +124,7 @@
     & thing(Name,Thing)
     & stack_light_status_property(Thing,PName)
     <-
-    observeProperty(PName,PName,Timer)[artifact_name(Name)];
+    !observeProperty(Name,PName,Timer);
     .println("acted on ",Name," to request ",Thing," to observe ",PName);
   .
 
@@ -134,7 +134,7 @@
     & thing(Name,Thing)
     & capacity_property(Thing,PName)
     <-
-    observeProperty(PName,PName,Timer)[artifact_name(Name)];
+    !observeProperty(Name,PName,Timer);
     .println("acted on ",Name," to request ",Thing," to observe ",PName);
   .
 // Plan for observing the value of the positionX property affordance
@@ -143,7 +143,7 @@
     & thing(Name,Thing)
     & position_x_property(Thing,PName)
     <-
-    observeProperty(PName,PName,Timer)[artifact_name(Name)];
+    !observeProperty(Name,PName,Timer);
     .println("acted on ",Name," to request ",Thing," to observe ",PName);
   .
 // Plan for observing the value of the positionZ property affordance
@@ -152,7 +152,7 @@
     & thing(Name,Thing)
     & position_z_property(Thing,PName)
     <-
-    observeProperty(PName,PName,Timer)[artifact_name(Name)];
+    !observeProperty(Name,PName,Timer);
     .println("acted on ",Name," to request ",Thing," to observe ",PName);
   .
 // Plan for observing the value of the clampStatus property affordance
@@ -161,7 +161,7 @@
     & thing(Name,Thing)
     & clamp_status_property(Thing,PName)
     <-
-    observeProperty(PName,PName,Timer)[artifact_name(Name)];
+    !observeProperty(Name,PName,Timer);
     .println("acted on ",Name," to request ",Thing," to observe ",PName);
   .
 // Plan for observing the value of the conveyorSpeed property affordance
@@ -170,41 +170,41 @@
     & thing(Name,Thing)
     & conveyor_speed_property(Thing,PName)
     <-
-    observeProperty(PName,PName,Timer)[artifact_name(Name)];
+    !observeProperty(Name,PName,Timer);
     .println("acted on ",Name," to request ",Thing," to observe ",PName);
   .
 
 /**********************/
-+stackLightStatus(X)[artifact_name(_,Name)] :
++propertyValue("stackLightStatus", X)[artifact_name(_,Name)] :
     thing(Name,Thing)
     <-
     .println("stackLightStatus is now ",X);
   .
-+capacity(X)[artifact_name(_,Name)] :
++propertyValue("capacity", X)[artifact_name(_,Name)] :
     thing(Name,Thing)
     <-
     .println("capacity is now ",X);
   .
 
-+positionX(X)[artifact_name(_,Name)] :
++propertyValue("positionX", X)[artifact_name(_,Name)] :
     thing(Name,Thing)
     <-
     .println("positionX is now ",X);
   .
 
-+positionZ(X)[artifact_name(_,Name)] :
++propertyValue("positionZ", X)[artifact_name(_,Name)] :
     thing(Name,Thing)
     <-
     .println("positionZ is now ",X);
   .
 
-+clampStatus(X)[artifact_name(_,Name)] :
++propertyValue("clampStatus", X)[artifact_name(_,Name)] :
     thing(Name,Thing)
     <-
     .println("clampStatus is now ",X);
   .
 
-+conveyorSpeed(X)[artifact_name(_,Name)] :
++propertyValue("conveyorSpeed", X)[artifact_name(_,Name)] :
     thing(Name,Thing)
     <-
     .println("conveyorSpeed is now ",X);

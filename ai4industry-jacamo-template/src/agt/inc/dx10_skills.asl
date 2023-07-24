@@ -117,7 +117,7 @@
     & thing(Name,Thing)
     & stack_light_status_property(Thing,PName)
     <-
-    observeProperty(PName,PName,Timer)[artifact_name(Name)];
+    !observeProperty(Name,PName,Timer);
     .println(Name,"---> ",Thing," observing current stack light status for ",PName);
   .
 
@@ -127,7 +127,7 @@
     & thing(Name,Thing)
     & conveyor_speed_property(Thing,PName)
     <-
-    observeProperty(PName,PName,Timer)[artifact_name(Name)];
+    !observeProperty(Name,PName,Timer);
     .println("acted on ",Name," to request ",Thing," to observe ",PName);
   .
 
@@ -138,7 +138,7 @@
     & conveyor_head_status_property(Thing,PName)
     <-
     //?property_full_name(Thing,PName,FullName);
-    observeProperty(PName,PName,Timer)[artifact_name(Name)];
+    !observeProperty(Name,PName,Timer);
     .println("acted on ",Name," to request ",Thing," to observe ",PName);
   .
 
@@ -148,7 +148,7 @@
     & thing(Name,Thing)
     & magnetic_valve_status_property(Thing,PName)
     <-
-    observeProperty(PName,PName,Timer)[artifact_name(Name)];
+    !observeProperty(Name,PName,Timer);
     .println("acted on ",Name," to request ",Thing," to observe ",PName);
   .
 
@@ -159,7 +159,7 @@
     & optical_sensor_status_property(Thing,PName)
     <-
     //?property_full_name(Thing,PName,FullName);
-    observeProperty(PName,PName,Timer)[artifact_name(Name)];
+    !observeProperty(Name,PName,Timer);
     .println("acted on ",Name," to request ",Thing," to observe ",PName);
   .
 
@@ -169,7 +169,7 @@
     & thing(Name,Thing)
     & tank_level_property(Thing,PName)
     <-
-    observeProperty(PName,PName,Timer)[artifact_name(Name)];
+    !observeProperty(Name,PName,Timer);
     .println("acted on ",Name," to request ",Thing," to observe ",PName);
   .
 
@@ -179,48 +179,48 @@
     & thing(Name,Thing)
     & position_x_property(Thing,PName)
     <-
-    observeProperty(PName,PName,Timer)[artifact_name(Name)];
+    !observeProperty(Name,PName,Timer);
     .println("acted on ",Name," to request ",Thing," to observe ",PName);
   .
 
 /**********************/
 
-+stackLightStatus(X)[artifact_name(_,Name)] :
++propertyValue("stackLightStatus", X)[artifact_name(_,Name)] :
     thing(Name,Thing)
     <-
     .println("stackLight Status is now ",X);
   .
 
-+conveyorSpeed(Speed)[artifact_name(_,Name)] :
++propertyValue("conveyorSpeed", Speed)[artifact_name(_,Name)] :
     thing(Name,Thing)
     <-
     .println("current conveyor speed is ", Speed);
   .
 
-+conveyorHeadStatus(X)[artifact_name(_,Name)] :
++propertyValue("conveyorHeadStatus", X)[artifact_name(_,Name)] :
     thing(Name,Thing)
     <-
     .println("conveyorHead Status is now ",X);
   .
 
-+magneticValveStatus(X)[artifact_name(_,Name)] :
++propertyValue("magneticValveStatus", X)[artifact_name(_,Name)] :
     thing(Name,Thing)
     <-
     .println("magnetic Valve Status is now ",X);
   .
 
-+opticalSensorStatus(X)[artifact_name(_,Name)] :
++propertyValue("opticalSensorStatus", X)[artifact_name(_,Name)] :
     thing(Name,Thing)
     <-
     .println("opticalSensor Status is now ",X);
   .
-+tankLevel(X)[artifact_name(_,Name)] :
++propertyValue("tankLevel", X)[artifact_name(_,Name)] :
     thing(Name,Thing)
     <-
     .println("tank level is now ", X);
   .
 
-+positionX(X)[artifact_name(_,Name)] :
++propertyValue("positionX", X)[artifact_name(_,Name)] :
     thing(Name,Thing)
     <-
     .println("positionX is now ",X);

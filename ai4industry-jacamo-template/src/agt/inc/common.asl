@@ -249,13 +249,20 @@ grasping_property(Thing,PName) :-
     .println(Thing," is letting output material at ",CX," ",CY," ",CZ);
   .
 
++!observeProperty(Name,PName,Timer) :
+    thing(Name,Thing) <-
+    readProperty(PName)[artifact_name(Name)];
+    .wait(Timer) ;
+    !!observeProperty(Name,PName,Timer) ;
+  .
+
 +!getDescription(Name) : thing(Name,Thing) <-
     .println("----------------------------------------------------");
     .findall(AN,has_action_affordance(Thing, AA) &  name(AA, AN),AL);
     .println(Thing," has the following action affordances ",AL);
     .findall(PN,has_property_affordance(Thing,PA) & name(PA, PN),PL);
     .println(Thing," has the following property affordances ",PL);
-    .findall(EN,has_event_affordance(Thing,EA) & name(EA, EN),EL);
+    .findall(EN,has_event_affordance(Thing,EA) & name(EA, EN),EL)
     .println(Thing," has the following event affordances ",EL);
     .println("----------------------------------------------------");
   .
