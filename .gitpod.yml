@@ -1,5 +1,5 @@
 tasks:
-  - before: yes | sdk install java 17.0.7-tem && cd ai4industry-jacamo-template
+  - before: yes | sdk install java 17.0.7-tem && npm install -g --unsafe-perm node-red && cd ai4industry-jacamo-template
 
 vscode:
   extensions:
