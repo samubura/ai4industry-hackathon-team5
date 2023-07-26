@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    implementation('org.jacamo:jacamo:1.2.1')
+    implementation('org.jacamo:jacamo:0.9')
     implementation('com.github.Hypermedea:hypermedea:master-SNAPSHOT') {
         // avoid logging level set to DEBUG
         exclude group: 'org.slf4j', module: 'slf4j-log4j12'
