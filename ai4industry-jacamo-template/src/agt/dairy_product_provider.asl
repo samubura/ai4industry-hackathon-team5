@@ -74,5 +74,6 @@ thing(dairyProductProvider,Thing) :-
   .
 
 { include("inc/common.asl") }
+{ include("inc/owl-signature.asl") }
 
 { include("$jacamoJar/templates/common-cartago.asl") }

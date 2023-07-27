@@ -11,66 +11,111 @@ The given URI identifies the index page of the KG describing the IT'm Factory.
 entryPoint("https://ci.mines-stetienne.fr/kg/") .
 
 +!start :
-    true
+    entryPoint(E)
     <-
     /*
     The first action in the program is to add !crawl to the list of goals of ld_spider.
     */
-    !crawl ;
-    /*
-    Once the crawl ends, the next goal of the agent is to count the number of RDF statements added to its set of beliefs.
-    */
-    !countRDF ;
+    !crawl(E) ;
   .
 
-+!crawl :
-    /*
-    Any hypermedia navigation must have an entry point. Here, it is given as an initial belief, as mentioned above. 
-    */
-    entryPoint(EntryPoint)
-    <-
-    .print("Crawling starting from ", EntryPoint) ;
-    /*
-    If the agent has goal !visitSync, it will dereference the given URI and wait for a response from the server owning the resource identified by that URI.
-    */
-    !visitSync(EntryPoint) ;
-  .
-
-+!visitSync(URI) :
++!crawl(URI) :
     true
     <-
-    /*
-    get() is an operation specific to Hypermedea agents. Given a URI, it will send a GET request to the server managing the resource identified by that URI. get() is asynchronous by design: the agent will move on to the following action without waiting for a response from the server. The agent can thus deal with non-responding servers and visit multiple resources in parallel.
-    */
+    +crawling ;
     get(URI) ;
-    /*
-    .wait() is a Jason internal action, as you already saw in vl10_agent. It is used in a slightly different way, here: instead of waiting a certain period of time, the agent will wait for a particular event (that may never occur). The event is triggered by Hypermedea's LD crawler after a GET request, to inform the agent that the server responded. This action therefore enforces synchronous interaction with the server.
-    See the documentation of .wait() for more details on the syntax of its arguments:
-    https://jason.sourceforge.net/api/jason/stdlib/wait.html
-    */
-    .wait({ +visited(_) }) ;
   .
 
-/*
-In Jason, events are not only generated when the agent's goals change. If an agent starts/stops believing something, an event is also generated (syntactically represented as +p or -p, where p is a logical statement).
-*/
++rdf(S, "http://www.w3.org/ns/ssn/hasSubSystem", O)[rdf_type_map(_, _, uri), crawler_source(Anchor)] :
+    crawling
+    <-
+    getParentURI(O, Target) ;
+    +barrier_resource(Anchor, Target)
+  .
+
 +visited(URI) :
-    true
+    crawling
     <-
     .print("Visited ", URI) ;
+    !expandCrawl(URI) ;
   .
 
-+!countRDF :
++!expandCrawl(Anchor) :
+    crawling
+    <-
+    for (barrier_resource(Anchor, URI)) {
+        getParentURI(URI, URIp) ;
+        if (not visited(URIp) | to_visit(URIp)) { get(URIp) }
+    }
+    !!checkEndCrawl ;
+  .
+
++!checkEndCrawl :
+    crawling
+    <-
+    if (crawler_status(false) & not .intend(expandCrawl(_))) { !endCrawl }
+  .
+
++!endCrawl :
+    crawling
+    <-
+    -crawling ;
+    .print("End crawling...") ;
+    !countTriples ;
+    !listThings;
+  .
+
++!countTriples :
     true
     <-
-    /*
-    .count() is an internal action to inspect the agent's beliefs. The action below looks specifically for RDF triples. These triples are added by Hypermedea's LD crawler after a GET request. If the server responds with an RDF representation of the requested resource, the triples it contains are turned into beliefs and made visible to the agent. The LD crawler generates event +visited(URI) only after all triples are visible by the agent.
-    See the documentation of .count():
-    https://jason.sourceforge.net/api/jason/stdlib/count.html
-    */
-    .count(rdf(_, _, _), Count) ;
-    .print("found ", Count, " triples.") ;
+    // all crawled triples are exposed to the agent as rdf/3 terms
+    .count(rdf(S, P, O), Count) ;
+    .print("found ", Count, " triples in the KG.") 
+    .
+
++!listThings
+  <-
+  .findall(T, thing(T), L)
+  for (.member(X, L)) {
+    .print("Found thing: ",X);
+  }
   .
+
+
+// +!visitSync(URI)
+//     <-
+//     /*
+//     get() is an operation specific to Hypermedea agents. Given a URI, it will send a GET request to the server managing the resource identified by that URI. get() is asynchronous by design: the agent will move on to the following action without waiting for a response from the server. The agent can thus deal with non-responding servers and visit multiple resources in parallel.
+//     */
+//     get(URI) ;
+//     /*
+//     .wait() is a Jason internal action, as you already saw in vl10_agent. It is used in a slightly different way, here: instead of waiting a certain period of time, the agent will wait for a particular event (that may never occur). The event is triggered by Hypermedea's LD crawler after a GET request, to inform the agent that the server responded. This action therefore enforces synchronous interaction with the server.
+//     See the documentation of .wait() for more details on the syntax of its arguments:
+//     https://jason.sourceforge.net/api/jason/stdlib/wait.html
+//     */
+//     .wait({ +visited(_) }) ;
+//   .
+
+// /*
+// In Jason, events are not only generated when the agent's goals change. If an agent starts/stops believing some, an event is also generated (syntactically represented as +p or -p, where p is a logical statement).
+// */
+// +visited(URI) :
+//     true
+//     <-
+//     .print("Visited ", URI) ;
+//   .
+
+// +!countRDF :
+//     true
+//     <-
+//     /*
+//     .count() is an internal action to inspect the agent's beliefs. The action below looks specifically for RDF triples. These triples are added by Hypermedea's LD crawler after a GET request. If the server responds with an RDF representation of the requested resource, the triples it contains are turned into beliefs and made visible to the agent. The LD crawler generates event +visited(URI) only after all triples are visible by the agent.
+//     See the documentation of .count():
+//     https://jason.sourceforge.net/api/jason/stdlib/count.html
+//     */
+//     .count(rdf(_, _, _), Count) ;
+//     .print("found ", Count, " triples.") ;
+//   .
 
 /*
 Exercises:

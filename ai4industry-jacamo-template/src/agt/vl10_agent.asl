@@ -27,24 +27,18 @@ TODO: replace N with your group number (to obtain e.g. "simu1", "simu2", etc).
 thing(storageRack,Thing) :-
     thing(Thing)
     // TODO include signature from the Product Ontology
-    & rdf(Thing,"https://www.w3.org/2019/wot/td#title","storageRack")
+    & rdf(Thing,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type","http://www.productontology.org/id/Automated_storage_and_retrieval_system")
     & rdf(Thing, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.w3.org/ns/sosa/Platform" )
     & has_action_affordance(Thing, PressEmergencyStop)
     & stop_in_emergency_action(PressEmergencyStop)
-    & has_property_affordance(Thing, PositionX)
-    & position_x_property(PositionX)
-    & has_property_affordance(Thing, PositionZ)
-    & has_property_affordance(Thing, Capacity)
-    & capacity_property(Thing, Capacity)
-    & position_z_property(PositionZ)
-    & has_property_affordance(Thing, StackLightStatus)
-    & stack_light_status_property(StackLightStatus)
-    & has_property_affordance(Thing, ClampStatus)
-    & clamp_status_property(ClampStatus)
-    & has_property_affordance(Thing, ConveyorSpeed)
-    & conveyor_speed_property(ConveyorSpeed)
     & has_action_affordance(Thing, MoveFromTo)
     & move_from_to_action(MoveFromTo)
+    & has_property_affordance(Thing, StackLightStatus)
+    & stack_light_status(StackLightStatus)
+    // & has_property_affordance(Thing, Capacity)
+    // & maximum_count(Thing, Capacity)
+    & has_property_affordance(Thing, ConveyorSpeed)
+    & conveyor_speed(ConveyorSpeed)
   .
 
 /*
@@ -65,6 +59,7 @@ Once the event occurs, the agent will therefore execute the two actions and remo
     !!run(Name);
   .
 
++rdf(Thing,"https://www.w3.org/2019/wot/td#title","vl10") <- .print(Thing).
 
 +!run(Name) :
     thing(Name,Thing)
@@ -76,7 +71,7 @@ Once the event occurs, the agent will therefore execute the two actions and remo
     // When no parameter, dryRun is false by default.
     makeArtifact(Name, "org.hypermedea.ThingArtifact", [Thing], ArtId);
     focus(ArtId);
-    // set credentials to access the Thing (DX10 workshop of the IT'm factory)
+    // set credentials to access the Thing 
     ?credentials(SimuName,SimuPasswd);
     setAuthCredentials(SimuName, SimuPasswd)[artifact_id(ArtId)] ;
     .println("ThingArtifact created");
@@ -93,5 +88,6 @@ Once the event occurs, the agent will therefore execute the two actions and remo
 
 { include("inc/vl10_skills.asl") }
 { include("inc/common.asl") }
+{ include("inc/owl-signature.asl") }
 
 { include("$jacamoJar/templates/common-cartago.asl") }

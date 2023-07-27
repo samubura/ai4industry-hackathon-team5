@@ -111,5 +111,6 @@ thing(fillingWorkshop,Thing) :-
 
 { include("inc/dx10_skills.asl") }
 { include("inc/common.asl") }
+{ include("inc/owl-signature.asl") }
 
 { include("$jacamoJar/templates/common-cartago.asl") }
