@@ -23,7 +23,7 @@ An agent's state is roughly composed of beliefs (logical statements, as in Prolo
 
 TODO: replace N with your group number (to obtain e.g. "simu1", "simu2", etc).
 */
-credentials("simuN", "simuN") .
+credentials("simu5", "simu5") .
 
 /*
 Entry point of vl10_agent's program.
