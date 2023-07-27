@@ -52,7 +52,6 @@ mas itm_factory_mas {
         goals:      start                                               // initial goal. Comment to make agent inactive
         join:       itm_factory_workspace                               // working environment for the agent
         focus:      itm_factory_workspace.ld_spider
-        focus:      itm_factory_workspace.vl10
     }
 
     // Agent for controling the Dosaxe Workshop / Filling workshop
@@ -108,6 +107,8 @@ mas itm_factory_mas {
         artifact test_cupProvider : org.hypermedea.ThingArtifact("https://ci.mines-stetienne.fr/kg/cup-provider")                              // for test by controler agent
         artifact test_dairyProductProvider : org.hypermedea.ThingArtifact("https://ci.mines-stetienne.fr/kg/dairy-product-provider")       // for test by controler agent
 
+        //artifact vl10 : org.hypermedea.ThingArtifact("https://ci.mines-stetienne.fr/kg/itmfactory/vl10")
+        
         artifact ld_spider : org.hypermedea.LinkedDataArtifact()          // for browsing RDF data
         artifact onto_mgr : org.hypermedea.OntologyArtifact()             // for managing OWL ontology signatures
     }

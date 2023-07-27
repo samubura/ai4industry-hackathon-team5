@@ -26,7 +26,7 @@ by sending of messages (e.g. . send(controller,achieve,invokeAction(....)))
     setAuthCredentials(SimuName, SimuPasswd)[artifact_name("test_cupProvider")] ;
     setAuthCredentials(SimuName, SimuPasswd)[artifact_name("test_dairyProductProvider")] ;
     // check the status of the conveyor and starts it if it is idling
-    !run;
+    //!run;
     .
 
 +!run :
