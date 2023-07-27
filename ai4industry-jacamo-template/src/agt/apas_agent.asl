@@ -154,6 +154,7 @@ thing(boschApas,Thing) :-
 
 { include("inc/robot_arm_skills.asl") }
 { include("inc/common.asl") }
+{ include("inc/owl-signature.asl") }
 
 { include("$jacamoJar/templates/common-cartago.asl") }
 { include("$jacamoJar/templates/common-moise.asl") }

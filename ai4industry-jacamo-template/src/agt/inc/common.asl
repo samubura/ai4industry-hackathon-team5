@@ -256,7 +256,7 @@ grasping_property(Thing,PName) :-
     !!observeProperty(Name,PName,Timer) ;
   .
 
-+!getDescription(Name) : thing(Name,Thing) <-
++!getDescription(Thing) <-
     .println("----------------------------------------------------");
     .findall(AN,has_action_affordance(Thing, AA) &  name(AA, AN),AL);
     .println(Thing," has the following action affordances ",AL);

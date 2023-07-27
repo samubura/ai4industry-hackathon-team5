@@ -87,5 +87,6 @@ Now you've got a first controller agent for the VL10 workshop!
 
 { include("inc/vl10_skills.asl") }
 { include("inc/common.asl") }
+{ include("inc/owl-signature.asl") }
 
 { include("$jacamoJar/templates/common-cartago.asl") }
