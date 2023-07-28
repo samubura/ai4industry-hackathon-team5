@@ -77,11 +77,12 @@ Once the event occurs, the agent will therefore execute the two actions and remo
     +initializing;
     ?capacity(X,Y);
     +nextItem(0,0);
+    !observeClampStatus(Name);
 
     ?conveyorSpeed(Name,IS);
     ?initialSpeed(S)
     if (IS == 0) {
-      !changeConveyorSpeed(Name,S);
+      !changeConveyorSpeed(Name,1);
     }
 
     //!getDescription(Thing);
@@ -99,7 +100,7 @@ Once the event occurs, the agent will therefore execute the two actions and remo
 +propertyValue("capacity", _) : initializing
 <- -initializing.
 
-+!pickNextItem : initializing | propertyValue("clampStatus", false)
++!pickNextItem : initializing | propertyValue("clampStatus", true)
 <- 
   .wait(100);
   !pickNextItem;
