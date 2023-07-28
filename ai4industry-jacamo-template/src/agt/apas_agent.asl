@@ -58,9 +58,8 @@ thing(boschApas,Thing) :-
     .println(Thing, " has origin coordinates ",CX," ",CY," ",CZ);
 
     //!getDescription(Thing);
-
     //!testStatus(Name);
-
+    
     // Not necessary to get all of them regularly. 
     // Choose and comment, otherwise there is a risk of
     // consuming all the computing resources
@@ -79,66 +78,6 @@ thing(boschApas,Thing) :-
     !!run(Name);
   .
 
-+!testStatus(Name) :
-    true
-    <-
-    ?inMovement(Name,ValueI);
-    .println("TEST In Movement ",ValueI);
-    ?grasping(Name,ValueG);
-    .println("TEST Grasping ",ValueG);
-  .
-
-+!potItems(Name) :
-    location_conveyor(Lc)
-    & location_packaging(Lp)
-    <-
-    !carry(Name,Lc,Lp);
-    .wait(1000);
-    !!potItems(Name);
-  .
-
-// Fake plan. Adapt.
-+!carry(Name,From,To) :
-    true
-    <-
-    .println("carrying a pot from ",From," to ",To);
-  .
-
-+!observeInMovement(Name) :
-    timer(Timer)
-    & thing(Name,Thing)
-    & in_movement_property(Thing,PName)
-    <-
-    !observeProperty(Name,PName,Timer);
-    .println("observing ",PName," on ",Thing);
-  .
-
-+!observeGrasping(Name) :
-    timer(Timer)
-    & thing(Name,Thing)
-    & grasping_property(Thing,PName)
-    <-
-    !observeProperty(Name,PName,Timer);
-    .println("observing ",PName," on ",Thing);
-  .
-
-// HORS HACKATHON
-+?inMovement(Name,Value) :
-    thing(Name,Thing)
-    & in_movement_property(Thing,PName)
-    <-
-    readProperty(PName,Value)[artifact_name(Name)];
-    .println(Name,"---> ",Thing," current in Movement ",Value," for ",PName);
-  .
-
-
-+?grasping(Name,Value) :
-    thing(Name,Thing)
-    & grasping_property(Thing,PName)
-    <-
-    readProperty(PName,Value)[artifact_name(Name)];
-    .println(Name,"---> ",Thing," current grasping ",Value," for ",FullName," ",PName);
-  .
 
 +propertyValue("inMovement", X) :
     true

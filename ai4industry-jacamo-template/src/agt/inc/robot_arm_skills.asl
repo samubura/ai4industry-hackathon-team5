@@ -36,6 +36,15 @@ has_origin_coordinates(Name,ValueX, ValueY, ValueZ) :-
       & builder(Temp, Base, "ontology#coordZ",ValueZ)
   .
 
++!testStatus(Name) :
+    true
+    <-
+    ?inMovement(Name,ValueI);
+    .println("TEST In Movement ",ValueI);
+    ?grasping(Name,ValueG);
+    .println("TEST Grasping ",ValueG);
+  .
+
 // Plan for invoking the action affordance reset
 +!reset(Name) :
     thing(Name,Thing)
@@ -89,3 +98,42 @@ has_origin_coordinates(Name,ValueX, ValueY, ValueZ) :-
     invokeAction(ActionName,json([kv(x,X),kv(y,Y),kv(z,Z)]))[artifact_name(Name)];
     .println("invoked operation ",ActionName," with parameter X ",X," Y ",Y," Z ",Z," on ",Thing);
   .
+
++!observeInMovement(Name) :
+    timer(Timer)
+    & thing(Name,Thing)
+    & in_movement_property(Thing,PName)
+    <-
+    !observeProperty(Name,PName,Timer);
+    .println("observing ",PName," on ",Thing);
+  .
+
++!observeGrasping(Name) :
+    timer(Timer)
+    & thing(Name,Thing)
+    & grasping_property(Thing,PName)
+    <-
+    !observeProperty(Name,PName,Timer);
+    .println("observing ",PName," on ",Thing);
+  .
+
+
+
+// HORS HACKATHON
++?inMovement(Name,Value) :
+    thing(Name,Thing)
+    & in_movement_property(Thing,PName)
+    <-
+    readProperty(PName,Value)[artifact_name(Name)];
+    .println(Name,"---> ",Thing," current in Movement ",Value," for ",PName);
+  .
+
+
++?grasping(Name,Value) :
+    thing(Name,Thing)
+    & grasping_property(Thing,PName)
+    <-
+    readProperty(PName,Value)[artifact_name(Name)];
+    .println(Name,"---> ",Thing," current grasping ",Value," for ",FullName," ",PName);
+  .
+

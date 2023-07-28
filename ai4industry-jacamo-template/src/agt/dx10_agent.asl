@@ -137,6 +137,13 @@ thing(fillingWorkshop,Thing) :-
 
 +propertyValue("tankLevel", V) <- !checkTankLevel(V).
 
++propertyValue("conveyorHeadStatus", true) <- 
+  .print("Request pickup from robot")
+.
+
++propertyValue("conveyorHeadStatus", _) <- true .
+
+
 // Fake plan. Adapt.
 +!fillItems(Name) :
     thing(Name,Thing)

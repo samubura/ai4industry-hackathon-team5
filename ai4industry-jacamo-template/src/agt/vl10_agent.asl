@@ -73,17 +73,20 @@ Once the event occurs, the agent will therefore execute the two actions and remo
     ?credentials(SimuName,SimuPasswd);
     setAuthCredentials(SimuName, SimuPasswd)[artifact_id(ArtId)] ;
     .println("ThingArtifact created");
-    //!getDescription(Thing);
-    //!testStatus(Name);
+
+    +initializing;
+    ?capacity(X,Y);
+    +nextItem(0,0);
+
     ?conveyorSpeed(Name,IS);
     ?initialSpeed(S)
     if (IS == 0) {
       !changeConveyorSpeed(Name,S);
     }
 
+    //!getDescription(Thing);
     //!testStatus(Name);
-    ?capacity(X,Y);
-    +nextItem(0,0);
+
   .
 
 +!run(Name) :
@@ -93,6 +96,14 @@ Once the event occurs, the agent will therefore execute the two actions and remo
     !!run(Name)
 .
 
++propertyValue("capacity", _) : initializing
+<- -initializing.
+
++!pickNextItem : initializing 
+<- 
+  .wait(100);
+  !pickNextItem;
+.
 
 +!pickNextItem : 
 thing(N, T) 
@@ -125,6 +136,8 @@ thing(N, T)
   .print("Ordering cups....")
   //TODO ORDER
 .
+
+
 
 { include("inc/vl10_skills.asl") }
 { include("inc/common.asl") }
