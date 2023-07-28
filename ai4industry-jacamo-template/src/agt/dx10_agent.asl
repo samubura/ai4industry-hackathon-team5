@@ -128,7 +128,7 @@ thing(fillingWorkshop,Thing) :-
 .
 
 +!checkTankLevel(V) <- 
-  if(V <= 1){
+  if(V <= 0.5){
     .print("Ordering dairies....");
     //TODO
     .wait(1000);
@@ -139,9 +139,13 @@ thing(fillingWorkshop,Thing) :-
 
 +propertyValue("conveyorHeadStatus", true) <- 
   .print("Request pickup from robot")
+  .send(apas_agent, achieve, pickCup)
 .
 
-+propertyValue("conveyorHeadStatus", _) <- true .
++propertyValue("conveyorHeadStatus", false) <- 
+  true
+.
+
 
 
 // Fake plan. Adapt.
@@ -152,7 +156,6 @@ thing(fillingWorkshop,Thing) :-
     .wait(1000);
   .
 
-// TO BE COMPLETED ....
 
 { include("inc/dx10_skills.asl") }
 { include("inc/common.asl") }

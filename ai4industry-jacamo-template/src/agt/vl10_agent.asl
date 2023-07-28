@@ -99,7 +99,7 @@ Once the event occurs, the agent will therefore execute the two actions and remo
 +propertyValue("capacity", _) : initializing
 <- -initializing.
 
-+!pickNextItem : initializing 
++!pickNextItem : initializing | propertyValue("clampStatus", false)
 <- 
   .wait(100);
   !pickNextItem;
@@ -112,8 +112,8 @@ thing(N, T)
 & X < MAX_X
 <- 
   .print("Picking Item at ",[X,Y]);
-  !pickItem(N, [X, Y]);
   -+nextItem(X+1, Y);
+  !pickItem(N, [X, Y]);
 .
 
 +!pickNextItem : 

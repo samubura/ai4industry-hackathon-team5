@@ -75,7 +75,7 @@ has_origin_coordinates(Name,ValueX, ValueY, ValueZ) :-
     thing(Name,Thing)
     & grasp_action(Thing,ActionName)
     <-
-    .println("invoking operation ",ActionName," with parameter ",At," on ",Thing);
+    //.println("invoking operation ",ActionName," with parameter ",At," on ",Thing);
     invokeAction(ActionName)[artifact_name(Name)];
     .println("invoked operation ",ActionName," with parameter ",At," on ",Thing);
   .

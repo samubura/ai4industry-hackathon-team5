@@ -57,18 +57,9 @@ thing(boschApas,Thing) :-
     ?has_origin_coordinates(Name,CX,CY,CZ);
     .println(Thing, " has origin coordinates ",CX," ",CY," ",CZ);
 
-    //!getDescription(Thing);
-    //!testStatus(Name);
-    
-    // Not necessary to get all of them regularly. 
-    // Choose and comment, otherwise there is a risk of
-    // consuming all the computing resources
-    // !observeInMovement(Name);
-    // !observeGrasping(Name);
-
-    // !potItems(Name);
-
-    // !testStatus(Name);
+    !reset(Name);
+    !observeInMovement(Name);
+    !observeGrasping(Name);
   .
 
 +!run(Name) :
@@ -77,6 +68,31 @@ thing(boschApas,Thing) :-
     .wait(100);
     !!run(Name);
   .
+
++!pickCup 
+: location_conveyor(I)
+& location_packaging(O)
+& thing(N, T)
+<- 
+  !moveAndWaitGrasp(N, I);
+  !moveAndWaitRelease(N, O);
+.
+
++!moveAndWaitGrasp(N, P) : true <- 
+  !move(Name, P);
+  .wait(500);
+  !grasp(Name, P);
+  .wait(500);
+  .print("Request new cup from rack");
+  .send(vl10_agent, achieve, pickNextItem);
+.
+
++!moveAndWaitRelease(N, P) : true <- 
+  !move(Name, P);
+  .wait(500);
+  !release(Name, P);
+  .wait(500);
+.
 
 
 +propertyValue("inMovement", X) :
