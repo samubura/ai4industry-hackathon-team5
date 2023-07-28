@@ -266,3 +266,9 @@ grasping_property(Thing,PName) :-
     .println(Thing," has the following event affordances ",EL);
     .println("----------------------------------------------------");
   .
+
+//---------------hotfix; to remove once fixed upstream-------------------
+
++!tryDontCatch(Goal) : not retrying(Goal)  <- Goal .
+-!tryDontCatch(Goal) : not retrying(Goal) <- +retrying(Goal) ; !tryDontCatch(Goal) .
++!tryDontCatch(Goal) : retrying(Goal) <- -retrying(Goal) .
