@@ -46,7 +46,7 @@ thing(dairyProductProvider,Thing) :-
     focus(ArtId);
     ?credentials(SimuName,SimuPasswd);
     setAuthCredentials(SimuName, SimuPasswd)[artifact_id(ArtId)] ;
-    !getDescription(Thing);
+    //!getDescription(Thing);
 .
 
 +!run(Name) :

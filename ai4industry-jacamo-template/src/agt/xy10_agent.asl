@@ -58,6 +58,7 @@ thing(packagingWorkshop,Thing) :-
   .
 
 +!run(Name) : thing(Name,Thing) <-
+    +initializing;
     .print("Found suitable Packaging : ", Thing) ;
     // To initialize the ThingArtifact in a dryRun mode (requests are printed but not executed)
     // makeArtifact(Name, "org.hypermedea.ThingArtifact", [Thing, false], ArtId);
@@ -71,27 +72,25 @@ thing(packagingWorkshop,Thing) :-
 
     ?locationOfInputMaterial(Name,CIX,CIY,CIZ);
     ?locationOfOutputProduct(Name,COX,COY,COZ);
-    !getDescription(Thing);
-    !testStatus(Name);
+    //!getDescription(Thing);
+    //!testStatus(Name);
 
     // Not necessary to get all of them regularly. 
     // Choose and comment, otherwise there is a risk of
     // consuming all the computing resources
-    !observeStackLightStatus(Name);
-    !observeConveyorSpeed(Name); 
+    // !observeStackLightStatus(Name);
+    // !observeConveyorSpeed(Name); 
     !observePackageBuffer(Name);
-    !observeOpticalSensorPackage(Name);
-    !observeOpticalSensorContainer1(Name);
-    !observeOpticalSensorContainer2(Name);
-    !observeConveyorHeadStatus(Name);
+    // !observeOpticalSensorPackage(Name);
+    // !observeOpticalSensorContainer1(Name);
+    // !observeOpticalSensorContainer2(Name);
+    // !observeConveyorHeadStatus(Name);
 
     ?conveyorSpeed(Name,IS);
+    ?initialSpeed(S)
     if (IS == 0) {
-      !changeConveyorSpeed(Name,IS+0.5);
+      !changeConveyorSpeed(Name,S);
     }
-    !packageItems(Name);
-
-    !testStatus(Name);
   .
 
 +!run(Name) : 
@@ -101,6 +100,27 @@ thing(packagingWorkshop,Thing) :-
     !!run(Name);
   .
 
++propertyValue("packageBuffer", V) : initializing & V >= 5
+<- 
+-initializing;
+.print("Telling the dx10 that I'm ready");
+.send(dx10_agent, tell, ready(xy10_agent));
+.
+
++propertyValue("packageBuffer", V)  :  V < 5
+<- 
+.print("Ordering packages and wait...");
+//TODO
+.wait(1000);
+.
+
++propertyValue("packageBuffer", V) 
+<- 
+.print("buffer: ", V);
+.
+
+
+
 // Fake plan. Adapt.
 +!packageItems(Name) :
     thing(Name,Thing)
@@ -108,6 +128,8 @@ thing(packagingWorkshop,Thing) :-
     .println("is packaging Item.");
     .wait(1000);
   .
+
+
 
 // TO BE COMPLETED ....
 

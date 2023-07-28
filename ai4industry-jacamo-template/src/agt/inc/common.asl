@@ -266,3 +266,8 @@ grasping_property(Thing,PName) :-
     .println(Thing," has the following event affordances ",EL);
     .println("----------------------------------------------------");
   .
+
+
++!invokeAction(Name, Input) : not retry(Name) <- +retry(Name); invokeAction(Name,Input) .
++!invokeAction(Name, Input) : retry(Name) <- -retry(Name) .
+-!invokeAction(Name, Input) <- !invokeAction(Name,Input) .

@@ -56,6 +56,7 @@ thing(fillingWorkshop,Thing) :-
 +!run(Name) :
     thing(Name,Thing)
     <-
+    +initializing;
     .print("Found suitable filling workshop: ", Thing) ;
     // To initialize the ThingArtifact in a dryRun mode (requests are printed but not executed)
     // makeArtifact(Name, "org.hypermedea.ThingArtifact", [Thing, false], ArtId);
@@ -69,28 +70,25 @@ thing(fillingWorkshop,Thing) :-
     .println("ThingArtifact created");
     //  ?locationOfInputMaterial(Name,CIX,CIY,CIZ);
     //  ?locationOfOutputProduct(Name,COX,COY,COZ);
-    !getDescription(Thing);
-    !testStatus(Name);
+    // !getDescription(Thing);
+    // !testStatus(Name);
     
     // Not necessary to get all of them regularly. 
     // Choose and comment, otherwise there is a risk of
     // consuming all the computing resources
     !observeTankLevel(Name);
-    !observeConveyorSpeed(Name);
+    // !observeConveyorSpeed(Name);
     !observeConveyorHeadStatus(Name);
     !observeOpticalSensorStatus(Name);
-    !observeMagneticValveStatus(Name);
-    !observePositionX(Name);
-    !observeStackLightStatus(Name);
+    // !observeMagneticValveStatus(Name);
+    // !observePositionX(Name);
+    // !observeStackLightStatus(Name);
     
     ?conveyorSpeed(Name,IS);
+    ?initialSpeed(S)
     if (IS == 0) {
-      !changeConveyorSpeed(Name,0.5);
+      !changeConveyorSpeed(Name,S);
     }
-    
-    !fillItems(Name);
-
-    !testStatus(Name);
   .
 
 +!run(Name) :
@@ -98,6 +96,46 @@ thing(fillingWorkshop,Thing) :-
     <-
     .wait(100);
     !!run(Name).
+
++ready(xy10_agent) : thing(N, T)<- 
+?tankLevel(N, V);
+!checkTankLevel(V).
+
++!checkTankLevel(V) : ready(xy10_agent) & initializing
+<-
+  if(V >= 2){
+    .print("Ordering the vl10 to pick item");
+    .send(vl10_agent, achieve, pickNextItem);
+    - initializing;
+  } else {
+    .print("Ordering dairies....");
+    .wait(1000);
+  }
+.
+
++!checkTankLevel(V) : initializing
+<-
+  if(V >= 2){
+    .print("Ready but waiting for the xy10");
+    .wait(100);
+    !!checkTankLevel(V);
+  } else {
+    .print("Ordering dairies....");
+    //TODO
+    .wait(1000);
+
+  }
+.
+
++!checkTankLevel(V) <- 
+  if(V <= 1){
+    .print("Ordering dairies....");
+    //TODO
+    .wait(1000);
+  }
+.
+
++propertyValue("tankLevel", V) <- !checkTankLevel(V).
 
 // Fake plan. Adapt.
 +!fillItems(Name) :

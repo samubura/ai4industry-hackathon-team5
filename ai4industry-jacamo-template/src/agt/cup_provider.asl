@@ -51,7 +51,7 @@ thing(cupProvider,Thing) :-
      // set credentials to access the Thing
     ?credentials(SimuName,SimuPasswd);
     setAuthCredentials(SimuName, SimuPasswd)[artifact_id(ArtId)] ;
-    !getDescription(Thing);
+    //!getDescription(Thing);
 .
 
 +!run(Name) :

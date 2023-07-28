@@ -59,8 +59,6 @@ Once the event occurs, the agent will therefore execute the two actions and remo
     !!run(Name);
   .
 
-+rdf(Thing,"https://www.w3.org/2019/wot/td#title","vl10") <- .print(Thing).
-
 +!run(Name) :
     thing(Name,Thing)
     <-
@@ -75,16 +73,58 @@ Once the event occurs, the agent will therefore execute the two actions and remo
     ?credentials(SimuName,SimuPasswd);
     setAuthCredentials(SimuName, SimuPasswd)[artifact_id(ArtId)] ;
     .println("ThingArtifact created");
-    !getDescription(Thing);
-    !testStatus(Name);
+    //!getDescription(Thing);
+    //!testStatus(Name);
+    ?conveyorSpeed(Name,IS);
+    ?initialSpeed(S)
+    if (IS == 0) {
+      !changeConveyorSpeed(Name,S);
+    }
+
+    //!testStatus(Name);
+    ?capacity(X,Y);
+    +nextItem(0,0);
   .
 
 +!run(Name) :
     true
     <-
     .wait(100);
-    !!run(Name).
+    !!run(Name)
+.
 
+
++!pickNextItem : 
+thing(N, T) 
+& nextItem(X, Y) 
+& propertyValue("capacity", [MAX_X, MAX_Y])
+& X < MAX_X
+<- 
+  .print("Picking Item at ",[X,Y]);
+  !pickItem(N, [X, Y]);
+  -+nextItem(X+1, Y);
+.
+
++!pickNextItem : 
+thing(N, T) 
+& nextItem(X, Y) 
+& propertyValue("capacity", [MAX_X, MAX_Y])
+& Y < MAX_Y - 1
+<- 
+  -+nextItem(0, Y+1);
+  !pickNextItem
+.
+
++!pickNextItem : 
+thing(N, T) 
+& nextItem(X, Y) 
+& propertyValue("capacity", [MAX_X, MAX_Y])
+<- 
+  -+nextItem(0, 0);
+  .print("Done! rack is empty")
+  .print("Ordering cups....")
+  //TODO ORDER
+.
 
 { include("inc/vl10_skills.asl") }
 { include("inc/common.asl") }
