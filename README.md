@@ -5,4 +5,6 @@
 ## Team 5
 This is the forked version with the work of team 5.
 
-The code developed from team 5 is on the branch "hackathon"
+The code developed from team 5 is on the branch `hackathon`
+
+You can download the node-red dashboard from https://github.com/MayloIFERR/AI4Industry_Hackathon2023/tree/main
