@@ -267,7 +267,8 @@ grasping_property(Thing,PName) :-
     .println("----------------------------------------------------");
   .
 
+//---------------hotfix; to remove once fixed upstream-------------------
 
-+!invokeAction(Name, Input) : not retry(Name) <- +retry(Name); invokeAction(Name,Input) .
-+!invokeAction(Name, Input) : retry(Name) <- -retry(Name) .
--!invokeAction(Name, Input) <- !invokeAction(Name,Input) .
++!tryDontCatch(Goal) : not retrying(Goal)  <- Goal .
+-!tryDontCatch(Goal) : not retrying(Goal) <- +retrying(Goal) ; !tryDontCatch(Goal) .
++!tryDontCatch(Goal) : retrying(Goal) <- -retrying(Goal) .

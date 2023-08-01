@@ -110,7 +110,6 @@ mas itm_factory_mas {
         //artifact vl10 : org.hypermedea.ThingArtifact("https://ci.mines-stetienne.fr/kg/itmfactory/vl10")
         
         artifact ld_spider : org.hypermedea.LinkedDataArtifact()          // for browsing RDF data
-        artifact onto_mgr : org.hypermedea.OntologyArtifact()             // for managing OWL ontology signatures
     }
 
 }
